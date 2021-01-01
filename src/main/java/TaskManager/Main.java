@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException {
+        Storages storages = new Storages();
         MainLoop mainLoop = new MainLoop();
         DatabaseManagement dbM = new DatabaseManagement();
         dbM.dropTables();
@@ -45,6 +46,7 @@ public class Main {
                 case 5:
                     System.out.println("Введите название задачи");
                     String taskTitle = reader.readLine();
+                    break;
             }
 
         }
