@@ -1,14 +1,14 @@
 package TaskManager;
 import java.sql.*;
 public class DatabaseManagement  {
-    public DatabaseManagement() throws ClassNotFoundException, SQLException {
-        /*ResultSet resultSet = statement.executeQuery("SELECT * FROM users1");
-        while(resultSet.next()){
-            System.out.println(resultSet.getInt(1));
-            System.out.println(resultSet.getString(2));
-            System.out.println("-------");
-        }*/
-    }
+//    public DatabaseManagement() throws ClassNotFoundException, SQLException {
+//        /*ResultSet resultSet = statement.executeQuery("SELECT * FROM users1");
+//        while(resultSet.next()){
+//            System.out.println(resultSet.getInt(1));
+//            System.out.println(resultSet.getString(2));
+//            System.out.println("-------");
+//        }*/
+//    }
     public void createUser(String userName) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?serverTimezone=UTC", "root", "Root(root)1");
@@ -63,12 +63,12 @@ public class DatabaseManagement  {
         statement.executeUpdate("DROP TABLE users");
     }
 
-    public void dropTable(String titleDatabase) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?serverTimezone=UTC", "root", "Root(root)1");
-        Statement statement = connection.createStatement();
-        statement.executeUpdate("DROP TABLE '" +  titleDatabase + "'");
-    }
+//    public void dropTable(String titleDatabase) throws ClassNotFoundException, SQLException {
+//        Class.forName("com.mysql.cj.jdbc.Driver");
+//        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?serverTimezone=UTC", "root", "Root(root)1");
+//        Statement statement = connection.createStatement();
+//        statement.executeUpdate("DROP TABLE '" +  titleDatabase + "'");
+//    }
     public void createUsersTable() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?serverTimezone=UTC", "root", "Root(root)1");
