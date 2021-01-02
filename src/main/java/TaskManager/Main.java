@@ -9,10 +9,11 @@ public class Main {
     public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException {
         Storages storages = new Storages();
         MainLoop mainLoop = new MainLoop();
-        DatabaseManagement dbM = new DatabaseManagement();
-        dbM.dropTables();
-        dbM.createUsersTable();
-        dbM.createProjectsTable();
+        Creator creator = new Creator();
+//        DatabaseManagement dbM = new DatabaseManagement();
+//        dbM.dropTables();
+//        dbM.createUsersTable();
+//        dbM.createProjectsTable();
         mainLoop.getMenu();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
@@ -21,27 +22,22 @@ public class Main {
                 case 1 :
                     System.out.println("Введите имя пользователя:");
                     String userName = reader.readLine();
-                    dbM.createUser(userName);
-                    dbM.getAllUsers();
+                    creator.createUser(userName, storages);
                     break;
                 case 2 :
-                    dbM.getAllUsers();
+
                     System.out.println("Введите id пользователя для удаления");
                     int userID = Integer.parseInt(reader.readLine());
-                    dbM.deleteUser(userID);
-                    dbM.getAllUsers();
+
                     break;
                 case 3:
                     System.out.println("Введите название проекта");
                     String projectTitle = reader.readLine();
-                    dbM.createProject(projectTitle);
+                    creator.createProject(projectTitle, storages);
                     break;
                 case 4:
-                    dbM.getAllProjects();
                     System.out.println("Введите id проекта для удаления");
                     int projectID = Integer.parseInt(reader.readLine());
-                    dbM.deleteProject(projectID);
-                    dbM.getAllProjects();
                     break;
                 case 5:
                     System.out.println("Введите название задачи");
