@@ -27,8 +27,12 @@ public class Main {
                 case 2 :
 
                     System.out.println("Введите id пользователя для удаления");
-                    int userID = Integer.parseInt(reader.readLine());
-
+                    String idForDelete = reader.readLine();
+                    if(creator.deleteUser(idForDelete, storages)){
+                        System.out.println("Удаление прошло успешно");
+                    } else {
+                        System.out.println("Вы ввели не число или несуществующий id");
+                    }
                     break;
                 case 3:
                     System.out.println("Введите название проекта");
@@ -36,8 +40,14 @@ public class Main {
                     creator.createProject(projectTitle, storages);
                     break;
                 case 4:
+                    storages.getAllProjects();
                     System.out.println("Введите id проекта для удаления");
-                    int projectID = Integer.parseInt(reader.readLine());
+                    String projectIdForDelete = reader.readLine();
+                    if(creator.deleteProject(projectIdForDelete, storages)) {
+                        System.out.println("Удаление прошло успешно");
+                    } else {
+                        System.out.println("Вы ввели не число или несуществующий id");
+                    }
                     break;
                 case 5:
                     System.out.println("Введите название задачи");
