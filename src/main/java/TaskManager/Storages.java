@@ -46,5 +46,19 @@ public class Storages {
             System.out.println(pair.getKey() + ":" + pair.getValue().getTitle());
         }
     }
+    public User getUserById(int id) {
+         return users.get(id);
+    }
+
+    public Project getProjectById(int id) {
+        return projects.get(id);
+    }
+    public boolean isExist(User user) {
+        return users.containsValue(user);
+    }
+
+    public boolean isExist(Project project) {
+        return projects.containsValue(project);
+    }
 
 }

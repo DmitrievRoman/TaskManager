@@ -51,7 +51,25 @@ public class Main {
                     break;
                 case 5:
                     System.out.println("Введите название задачи");
-                    String taskTitle = reader.readLine();
+                    String taskTopic = reader.readLine();
+                    System.out.println("Введите тип задачи");
+                    String taskType = reader.readLine();
+                    System.out.println("Введите приоритет задачи");
+                    String taskPriority = reader.readLine();
+                    System.out.println("Введите описание задачи");
+                    String taskDescription = reader.readLine();
+                    System.out.println("Введите id исполнителя задачи");
+                    storages.getAllUsers();
+                    String executorId = reader.readLine();
+                    System.out.println("Введите id проекта");
+                    storages.getAllProjects();
+                    String projectId = reader.readLine();
+                    if(creator.createTask(projectId, taskTopic, taskType, taskPriority, executorId, taskDescription, storages)) {
+                        System.out.println("Задача создана успешно");
+                    } else {
+                        System.out.println("Вы ввели не число или несуществующий id");
+                        System.out.println("Задача не создана");
+                    }
                     break;
             }
 
