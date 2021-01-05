@@ -71,6 +71,14 @@ public class Main {
                         System.out.println("Задача не создана");
                     }
                     break;
+                case 6:
+                    storages.getAllTasks();
+                    String taskIdForDelete = reader.readLine();
+                    if(creator.deleteTask(taskIdForDelete, storages)) {
+                        System.out.println("Удаление прошло успешно");
+                    } else {
+                        System.out.println("Вы ввели не число или несуществующий объект");
+                    }
             }
 
         }

@@ -36,6 +36,14 @@ public class Storages {
     public void addTask(Integer id, Task task) {
         tasks.put(id, task);
     }
+    public boolean deleteTask(int id) {
+        if(tasks.containsKey(id)){
+            tasks.remove(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
     public void getAllUsers() {
         for(Map.Entry<Integer, User> pair : users.entrySet()){
             System.out.println(pair.getKey() + ":" + pair.getValue().getName());
@@ -43,6 +51,11 @@ public class Storages {
     }
     public void getAllProjects() {
         for(Map.Entry<Integer, Project> pair : projects.entrySet()){
+            System.out.println(pair.getKey() + ":" + pair.getValue().getTitle());
+        }
+    }
+    public void getAllTasks() {
+        for(Map.Entry<Integer, Task> pair : tasks.entrySet()) {
             System.out.println(pair.getKey() + ":" + pair.getValue().getTitle());
         }
     }

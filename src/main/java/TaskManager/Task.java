@@ -20,4 +20,8 @@ public class Task {
         this.id = ++count;
         storages.addTask(id, this);
     }
+    public String getTitle() {
+        return topic;
+    }
+
 }

@@ -41,4 +41,12 @@ public class Creator {
         }
         return true;
     }
+    public boolean deleteTask(String id, Storages storages) {
+        try {
+            int integerId = Integer.parseInt(id);
+            return storages.deleteTask(integerId);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }
