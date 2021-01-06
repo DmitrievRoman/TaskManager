@@ -11,6 +11,9 @@ public class MainLoop {
         System.out.println("4.Удалить проект");
         System.out.println("5.Создать задачу");
         System.out.println("6.Удалить задачу");
+        System.out.println("7.Вывести список задач назначенных на пользователя");
+        System.out.println("8.Вывести список всех задач в проекте");
+        System.out.println("9.Вывести список всех пользователей в проекте");
 
     }
 

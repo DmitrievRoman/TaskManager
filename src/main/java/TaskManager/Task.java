@@ -19,6 +19,9 @@ public class Task {
         this.description = description;
         this.id = ++count;
         storages.addTask(id, this);
+        executor.addTask(this);
+        project.addTask(this);
+        project.addUser(executor);
     }
     public String getTitle() {
         return topic;

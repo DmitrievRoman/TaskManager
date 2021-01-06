@@ -79,6 +79,13 @@ public class Main {
                     } else {
                         System.out.println("Вы ввели не число или несуществующий объект");
                     }
+                    break;
+                case 7:
+                    storages.getAllUsers();
+                    System.out.println("Введите id пользователя");
+                    String userId = reader.readLine();
+                    int IntUserId = Integer.parseInt(userId);
+                    storages.getUserById(IntUserId).getUserTasksList();
             }
 
         }
