@@ -25,6 +25,9 @@ public class User {
     public void addTask(Task task) {
         tasks.add(task);
     }
+    public void deleteTask(Task task) {
+        tasks.remove(task);
+    }
 
     public void clearTaskList() {
         tasks.clear();

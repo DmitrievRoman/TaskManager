@@ -22,8 +22,31 @@ public class Project {
     public void addUser(User user){
         users.add(user);
     }
+    public void deleteUser(User user) {
+        users.remove(user);
+    }
+
+    public void deleteTask(Task task) {
+        tasks.remove(task);
+    }
+    public boolean isExist(User user) {
+        return users.contains(user);
+    }
 
     public void addTask(Task task) {
         tasks.add(task);
+    }
+    public void getProjectTasksList() {
+        for (Task task : tasks) {
+            System.out.println(task.getTitle());
+        }
+    }
+    public void getProjectUsersList() {
+        for (User user: users) {
+            System.out.println(user.getName());
+        }
+    }
+    public void getAllTasksId(){
+
     }
 }

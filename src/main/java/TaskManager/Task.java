@@ -26,5 +26,15 @@ public class Task {
     public String getTitle() {
         return topic;
     }
+    public User getExecutor() {
+        return executor;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+    public Integer getId() {
+        return getId();
+    }
 
 }

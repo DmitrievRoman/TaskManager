@@ -77,15 +77,48 @@ public class Main {
                     if(creator.deleteTask(taskIdForDelete, storages)) {
                         System.out.println("Удаление прошло успешно");
                     } else {
-                        System.out.println("Вы ввели не число или несуществующий объект");
+                        System.out.println("Вы ввели не число или несуществующий id");
                     }
                     break;
                 case 7:
                     storages.getAllUsers();
                     System.out.println("Введите id пользователя");
                     String userId = reader.readLine();
-                    int IntUserId = Integer.parseInt(userId);
-                    storages.getUserById(IntUserId).getUserTasksList();
+                    try{
+                        int intUserId = Integer.parseInt(userId);
+                        storages.getUserById(intUserId).getUserTasksList();
+                    } catch (NumberFormatException e) {
+                        System.out.println("Вы ввели не число или несуществующий id");
+                    }
+                    break;
+                case 8:
+                    storages.getAllProjects();
+                    System.out.println("Введите id проекта");
+                    String projectIdForInfo = reader.readLine();
+                    try{
+                        int intProjectIdForInfo = Integer.parseInt(projectIdForInfo);
+                        storages.getProjectById(intProjectIdForInfo).getProjectTasksList();
+                    } catch (NumberFormatException e) {
+                        System.out.println("Вы ввели не число или несуществующий id");
+                    }
+                    break;
+                case 9:
+                    storages.getAllProjects();
+                    System.out.println("Введите id проекта");
+                    String projectIdForUsersList = reader.readLine();
+                    try {
+                        int intProjectIdForUsersList = Integer.parseInt(projectIdForUsersList);
+                        storages.getProjectById(intProjectIdForUsersList).getProjectUsersList();
+                    } catch (NumberFormatException e) {
+                        System.out.println("Вы ввели не число или несуществующий id");
+                    }
+                    break;
+                case 10:
+                    storages.getAllProjects();
+                    break;
+                case 11:
+                    storages.getAllUsers();
+                    break;
             }
 
         }
