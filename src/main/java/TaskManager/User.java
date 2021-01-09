@@ -2,7 +2,7 @@ package TaskManager;
 
 import java.util.ArrayList;
 
-public class User {
+public class User extends Unit {
     private static int count;
     private String name;
     private Integer id;
@@ -11,7 +11,7 @@ public class User {
     public User (String name, Storages storages) {
         this.name = name;
         this.id = ++count;
-        storages.addUser(id, this);
+        storages.add(id, this);
     }
 
     public String getName() {

@@ -1,6 +1,6 @@
 package TaskManager;
 
-public class Task {
+public class Task extends Unit {
     private static int count;
     private Project project;
     private String topic;
@@ -18,7 +18,7 @@ public class Task {
         this.executor = executor;
         this.description = description;
         this.id = ++count;
-        storages.addTask(id, this);
+        storages.add(id, this);
         executor.addTask(this);
         project.addTask(this);
         project.addUser(executor);
@@ -32,9 +32,6 @@ public class Task {
 
     public Project getProject() {
         return project;
-    }
-    public Integer getId() {
-        return getId();
     }
 
 }

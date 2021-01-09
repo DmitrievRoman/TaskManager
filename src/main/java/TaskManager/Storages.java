@@ -8,8 +8,14 @@ public class Storages {
     private Map<Integer, Project> projects = new HashMap<Integer, Project>();
     private Map<Integer, Task> tasks = new HashMap<Integer, Task>();
 
-    public void addUser(Integer id, User user) {
+    public void add(Integer id, User user) {
         users.put(id, user);
+    }
+    public void add(Integer id, Project project) {
+        projects.put(id, project);
+    }
+    public void add(Integer id, Task task) {
+        tasks.put(id, task);
     }
     public boolean deleteUser(int id) {
         if(users.containsKey(id)) {
@@ -22,6 +28,7 @@ public class Storages {
             }
             for(Map.Entry<Integer, Task> pair : tasks.entrySet()) {
                 if(pair.getValue().getExecutor().equals(user)) {
+                    deleteTask(pair.getKey());
                     tasks.remove(pair.getKey());
                 }
             }
@@ -31,23 +38,17 @@ public class Storages {
             return false;
         }
     }
-
-
-    public void addProject(Integer id, Project project) {
-        projects.put(id, project);
-    }
     public boolean deleteProject(int id) {
         if(projects.containsKey(id)) {
             Project project = projects.remove(id);
-            //project.
+
+            for (int i = 0; i < project.getAllTasksId().size(); i++) {
+                deleteTask(project.getAllTasksId().get(i));
+            }
             return true;
         } else {
             return false;
         }
-    }
-
-    public void addTask(Integer id, Task task) {
-        tasks.put(id, task);
     }
     public boolean deleteTask(int id) {
         if(tasks.containsKey(id)){
@@ -77,16 +78,13 @@ public class Storages {
     public User getUserById(int id) {
          return users.get(id);
     }
-
     public Project getProjectById(int id) {
         return projects.get(id);
     }
     public boolean isExist(User user) {
         return users.containsValue(user);
     }
-
     public boolean isExist(Project project) {
         return projects.containsValue(project);
     }
-
 }

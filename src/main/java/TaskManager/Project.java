@@ -2,7 +2,7 @@ package TaskManager;
 
 import java.util.ArrayList;
 
-public class Project {
+public class Project extends Unit{
     private static int count;
     private String title;
     private Integer id;
@@ -12,7 +12,7 @@ public class Project {
     public Project(String title, Storages storages) {
         this.title = title;
         this.id = ++count;
-        storages.addProject(id,this);
+        storages.add(id,this);
     }
 
     public String getTitle() {
@@ -46,7 +46,11 @@ public class Project {
             System.out.println(user.getName());
         }
     }
-    public void getAllTasksId(){
-
+    public ArrayList<Integer> getAllTasksId(){
+        ArrayList<Integer> tasksId = new ArrayList<Integer>();
+        for (Task task : tasks) {
+            tasksId.add(task.getId());
+        }
+        return tasksId;
     }
 }
