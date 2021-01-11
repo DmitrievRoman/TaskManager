@@ -19,22 +19,20 @@ public class Project extends Unit{
         return title;
     }
 
-    public void addUser(User user){
+    public void add(User user){
         users.add(user);
     }
-    public void deleteUser(User user) {
+    public void add(Task task) {
+        tasks.add(task);
+    }
+    public void delete(User user) {
         users.remove(user);
     }
-
-    public void deleteTask(Task task) {
+    public void delete(Task task) {
         tasks.remove(task);
     }
     public boolean isExist(User user) {
         return users.contains(user);
-    }
-
-    public void addTask(Task task) {
-        tasks.add(task);
     }
     public void getProjectTasksList() {
         for (Task task : tasks) {

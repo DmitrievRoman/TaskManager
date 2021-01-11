@@ -64,8 +64,13 @@ public class Main {
                     System.out.println("Введите id проекта");
                     storages.getAllProjects();
                     String projectId = reader.readLine();
-                    if(creator.createTask(projectId, taskTopic, taskType, taskPriority, executorId, taskDescription, storages)) {
-                        System.out.println("Задача создана успешно");
+                    if(creator.isDigit(executorId) && creator.isDigit(projectId)) {
+                        if (creator.createTask(Integer.parseInt(projectId), taskTopic, taskType, taskPriority, Integer.parseInt(executorId), taskDescription, storages)) {
+                            System.out.println("Задача создана успешно");
+                        } else {
+                            System.out.println("Вы ввели несуществующий id");
+                            System.out.println("Задача не создана");
+                        }
                     } else {
                         System.out.println("Вы ввели не число или несуществующий id");
                         System.out.println("Задача не создана");

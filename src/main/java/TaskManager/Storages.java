@@ -23,7 +23,7 @@ public class Storages {
             user.clearTaskList();
             for (Map.Entry<Integer, Project> pair : projects.entrySet()) {
                 if(pair.getValue().isExist(user)){
-                    pair.getValue().deleteUser(user);
+                    pair.getValue().delete(user);
                 }
             }
             for(Map.Entry<Integer, Task> pair : tasks.entrySet()) {
@@ -54,7 +54,7 @@ public class Storages {
         if(tasks.containsKey(id)){
             Task task = tasks.remove(id);
             task.getExecutor().deleteTask(task);
-            task.getProject().deleteTask(task);
+            task.getProject().delete(task);
             return true;
         } else {
             return false;

@@ -20,8 +20,8 @@ public class Task extends Unit {
         this.id = ++count;
         storages.add(id, this);
         executor.addTask(this);
-        project.addTask(this);
-        project.addUser(executor);
+        project.add(this);
+        project.add(executor);
     }
     public String getTitle() {
         return topic;
