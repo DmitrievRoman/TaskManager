@@ -27,14 +27,20 @@ public class Creator {
             return false;
         }
     }
-    public boolean createTask(int projectId, String topic, String type, String priority, int executorId, String description, Storages storages) {
-            if ((storages.isExist(storages.getProjectById(projectId))) && (storages.isExist(storages.getUserById(executorId)))) {
-                Project project = storages.getProjectById(projectId);
-                User executor = storages.getUserById(executorId);
+    public boolean createTask(String projectId, String topic, String type, String priority, String executorId, String description, Storages storages) {
+        try {
+            int intProjectId = Integer.parseInt(projectId);
+            int intExecutorId = Integer.parseInt(executorId);
+            if ((storages.isExist(storages.getProjectById(intProjectId))) && (storages.isExist(storages.getUserById(intExecutorId)))) {
+                Project project = storages.getProjectById(intProjectId);
+                User executor = storages.getUserById(intExecutorId);
                 new Task(project, topic, type, priority, executor, description, storages);
             } else {
                 return false;
             }
+        } catch (NumberFormatException e) {
+            return false;
+        }
         return true;
     }
     public boolean deleteTask(String id, Storages storages) {
