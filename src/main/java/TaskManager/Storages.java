@@ -78,12 +78,28 @@ public class Storages {
     public User getUserById(int id) {
          return users.get(id);
     }
-    public void getAllTasksForUserById(int id) {
+    public void displayAllTasksForUserById(int id) {
         if(users.containsKey(id)){
             User user = users.get(id);
             user.getUserTasksList();
         } else {
-            System.out.println("Пользователя с таки id не существует");
+            System.out.println("Пользователя с таким id не существует");
+        }
+    }
+    public void displayAllProjectUsersById(int id) {
+        if (projects.containsKey(id)) {
+            Project project = projects.get(id);
+            project.getProjectUsersList();
+        } else {
+            System.out.println("Проекта с таким id не существует");
+        }
+    }
+    public void displayAllUsersInProjectById(int id) {
+        if(projects.containsKey(id)) {
+            Project project = projects.get(id);
+            project.getProjectUsersList();
+        } else {
+            System.out.println("Прроекта с таким id не существует");
         }
     }
     public Project getProjectById(int id) {
