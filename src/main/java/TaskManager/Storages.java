@@ -78,6 +78,14 @@ public class Storages {
     public User getUserById(int id) {
          return users.get(id);
     }
+    public void getAllTasksForUserById(int id) {
+        if(users.containsKey(id)){
+            User user = users.get(id);
+            user.getUserTasksList();
+        } else {
+            System.out.println("Пользователя с таки id не существует");
+        }
+    }
     public Project getProjectById(int id) {
         return projects.get(id);
     }

@@ -67,7 +67,7 @@ public class Main {
                     if (creator.createTask(projectId, taskTopic, taskType, taskPriority, executorId, taskDescription, storages)) {
                         System.out.println("Задача создана успешно");
                     } else {
-                        System.out.println("Вы ввели не число несуществующий id");
+                        System.out.println("Вы ввели не число или несуществующий id");
                         System.out.println("Задача не создана");
                     }
                     break;
@@ -86,7 +86,7 @@ public class Main {
                     String userId = reader.readLine();
                     try{
                         int intUserId = Integer.parseInt(userId);
-                        storages.getUserById(intUserId).getUserTasksList();
+                        storages.getAllTasksForUserById(intUserId);
                     } catch (NumberFormatException e) {
                         System.out.println("Вы ввели не число или несуществующий id");
                     }
