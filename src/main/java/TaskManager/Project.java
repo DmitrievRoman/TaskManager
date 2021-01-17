@@ -35,13 +35,21 @@ public class Project extends Unit{
         return users.contains(user);
     }
     public void getProjectTasksList() {
-        for (Task task : tasks) {
-            System.out.println(task.getTitle());
+        if (!tasks.isEmpty()) {
+            for (Task task : tasks) {
+                System.out.println(task.getTitle());
+            }
+        } else {
+            System.out.println("В проекте нет ни одной задачи");
         }
     }
     public void getProjectUsersList() {
-        for (User user: users) {
-            System.out.println(user.getName());
+        if (!users.isEmpty()) {
+            for (User user : users) {
+                System.out.println(user.getName());
+            }
+        } else {
+            System.out.println("В проекте нет пользователей");
         }
     }
     public ArrayList<Integer> getAllTasksId(){

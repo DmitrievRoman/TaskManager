@@ -61,18 +61,30 @@ public class Storages {
         }
     }
     public void getAllUsers() {
-        for(Map.Entry<Integer, User> pair : users.entrySet()){
-            System.out.println(pair.getKey() + ":" + pair.getValue().getName());
+        if(!users.isEmpty()) {
+            for (Map.Entry<Integer, User> pair : users.entrySet()) {
+                System.out.println(pair.getKey() + ":" + pair.getValue().getName());
+            }
+        } else {
+            System.out.println("Список польхователей пуст");
         }
     }
     public void getAllProjects() {
-        for(Map.Entry<Integer, Project> pair : projects.entrySet()){
-            System.out.println(pair.getKey() + ":" + pair.getValue().getTitle());
+        if(!projects.isEmpty()) {
+            for (Map.Entry<Integer, Project> pair : projects.entrySet()) {
+                System.out.println(pair.getKey() + ":" + pair.getValue().getTitle());
+            }
+        } else {
+            System.out.println("Список проектов пуст");
         }
     }
     public void getAllTasks() {
-        for(Map.Entry<Integer, Task> pair : tasks.entrySet()) {
-            System.out.println(pair.getKey() + ":" + pair.getValue().getTitle());
+        if(!tasks.isEmpty()) {
+            for (Map.Entry<Integer, Task> pair : tasks.entrySet()) {
+                System.out.println(pair.getKey() + ":" + pair.getValue().getTitle());
+            }
+        } else {
+            System.out.println("Список задач пуст");
         }
     }
     public User getUserById(int id) {

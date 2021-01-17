@@ -18,8 +18,12 @@ public class User extends Unit {
         return name;
     }
     public void getUserTasksList() {
-        for(Task task : tasks) {
-            System.out.println(task.getTitle());
+        if (!tasks.isEmpty()) {
+            for (Task task : tasks) {
+                System.out.println(task.getTitle());
+            }
+        } else {
+            System.out.println("Список задач пользователя пуст");
         }
     }
     public void addTask(Task task) {

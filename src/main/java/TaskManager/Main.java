@@ -26,7 +26,7 @@ public class Main {
                         creator.createUser(userName, storages);
                         break;
                     case "2":
-
+                        storages.getAllUsers();
                         System.out.println("Введите id пользователя для удаления");
                         String idForDelete = reader.readLine();
                         if (creator.deleteUser(idForDelete, storages)) {
