@@ -56,11 +56,12 @@ public class DatabaseManagement  {
         }
     }
     public void dropTables() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
+        Class.forName(" com.mysql.cj.jdbc.Driver");
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?serverTimezone=UTC", "root", "Root(root)1");
         Statement statement = connection.createStatement();
         statement.executeUpdate("DROP TABLE projects");
         statement.executeUpdate("DROP TABLE users");
+        statement.executeUpdate("DROP TABLE tasks");
     }
 
 //    public void dropTable(String titleDatabase) throws ClassNotFoundException, SQLException {
@@ -81,4 +82,18 @@ public class DatabaseManagement  {
         Statement statement = connection.createStatement();
         statement.executeUpdate("CREATE TABLE projects(project_id int AUTO_INCREMENT PRIMARY KEY, title VARCHAR(30) NOT NULL, user_id int, FOREIGN KEY(user_id) REFERENCES users (user_id)) ");
     }
+    public void createTasksTable() throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?serverTimezone=UTC", "root", "Root(root)1");
+        Statement statement = connection.createStatement();
+        statement.executeUpdate("CREATE TABLE tasks " +
+                "task_id INTEGER AUTO_INCREMENT PRIMARY KEY," +
+                "title VARCHAR(30) NOT NULL," +
+                "project_id INTEGER REFERENCES projects(project_id)," +
+                "type VARCHAR(30)" +
+                "priority VARCHAR(30)" +
+                "executor_id INTEGER REFERENCES users(user_id)," +
+                "description VARCHAR");
+    }
+
 }

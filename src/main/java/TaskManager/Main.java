@@ -10,10 +10,11 @@ public class Main {
         Storages storages = new Storages();
         MainLoop mainLoop = new MainLoop();
         Creator creator = new Creator();
-//        DatabaseManagement dbM = new DatabaseManagement();
-//        dbM.dropTables();
-//        dbM.createUsersTable();
-//        dbM.createProjectsTable();
+        DatabaseManagement dbM = new DatabaseManagement();
+        dbM.dropTables();
+        dbM.createUsersTable();
+        dbM.createProjectsTable();
+        dbM.createTasksTable();
         mainLoop.getMenu();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
