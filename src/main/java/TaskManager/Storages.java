@@ -1,5 +1,6 @@
 package TaskManager;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -122,5 +123,8 @@ public class Storages {
     }
     public boolean isExist(Project project) {
         return projects.containsValue(project);
+    }
+    public void saveToDatabase(Database database) throws SQLException {
+        database.save(users,projects,tasks);
     }
 }

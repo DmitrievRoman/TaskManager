@@ -9,35 +9,35 @@ import java.sql.Statement;
 import java.sql.DriverManager;
 
 public class Main {
-    public static final String USER_NAME = "root";
-    public static final String PASSWORD = "Root(root)1";
-    public static final String URL = "jdbc:mysql://localhost:3306/test";
-    public static Statement statement;
-    public static Connection connection;
-    static {
-        try {
-            connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
-            statement = connection.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static final String USER_NAME = "root";
+//    public static final String PASSWORD = "Root(root)1";
+//    public static final String URL = "jdbc:mysql://localhost:3306/test";
+//    public static Statement statement;
+//    public static Connection connection;
+//    static {
+//        try {
+//            connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
+//            statement = connection.createStatement();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
     public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException {
         Storages storages = new Storages();
         MainLoop mainLoop = new MainLoop();
         Creator creator = new Creator();
-        Class.forName("com.mysql.cj.jdbc.Driver");
+        //Class.forName("com.mysql.cj.jdbc.Driver");
 //        DatabaseManagement dbM = new DatabaseManagement();
 //        dbM.dropTables();
 //        dbM.createUsersTable();
 //        dbM.createProjectsTable();
 //        dbM.createTasksTable();
-//        Database database = new Database();
-//        database.createUsersTable();
-//        database.createProjectsTable();
-//        database.createTasksTable();
-        statement.executeUpdate("CREATE TABLE users(user_id int AUTO_INCREMENT PRIMARY KEY," +
-                " name VARCHAR(20) NOT NULL)");
+        Database database = new Database();
+        database.createUsersTable();
+        database.createProjectsTable();
+        database.createTasksTable();
+//        statement.executeUpdate("CREATE TABLE users(user_id int AUTO_INCREMENT PRIMARY KEY," +
+//                " name VARCHAR(20) NOT NULL)");
         mainLoop.getMenu();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
@@ -144,6 +144,8 @@ public class Main {
                     case "11":
                         storages.getAllUsers();
                         break;
+                    case"save":
+                        storages.saveToDatabase(database);
                 }
             } else {
                 System.out.println("Введите число");
