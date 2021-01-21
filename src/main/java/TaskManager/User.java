@@ -36,4 +36,7 @@ public class User extends Unit {
     public void clearTaskList() {
         tasks.clear();
     }
+    public Integer getId() {
+        return id;
+    }
 }

@@ -59,4 +59,7 @@ public class Project extends Unit{
         }
         return tasksId;
     }
+    public Integer getId() {
+        return id;
+    }
 }

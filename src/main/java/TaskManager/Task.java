@@ -29,9 +29,17 @@ public class Task extends Unit {
     public User getExecutor() {
         return executor;
     }
-
     public Project getProject() {
         return project;
+    }
+    public String getType() {
+        return type;
+    }
+    public String getPriority() {
+        return priority;
+    }
+    public String getDescription() {
+        return description;
     }
 
 }

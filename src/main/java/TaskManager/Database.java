@@ -55,8 +55,18 @@ public class Database {
                 statement.executeUpdate("insert into projects (project_id,title) values ('" +pair.getKey() +"','" + pair.getValue().getTitle() + "')");
             }
             for(Map.Entry<Integer, Task> pair : tasksMap.entrySet()){
-
+                statement.executeUpdate("insert into tasks(task_id, title, project_id, type, priority, executor_id, description)" +
+                        " values('"+ pair.getKey() + "'," +
+                        "'" + pair.getValue().getTitle() + "'," +
+                        "'" + pair.getValue().getProject().getId() + "'," +
+                        "'" + pair.getValue().getType() + "'," +
+                        "'" + pair.getValue().getPriority() + "'," +
+                        "'" + pair.getValue().getExecutor().getId() + "'," +
+                        "'" + pair.getValue().getDescription() + "' )");
             }
-            //Надо создать методы в классе task возвращающие user и project вызывать их getKey() и это будет foreign key
+    }
+
+    public void load(Storages storages) {
+
     }
 }
