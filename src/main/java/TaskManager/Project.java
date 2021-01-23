@@ -15,6 +15,13 @@ public class Project extends Unit{
         storages.add(id,this);
     }
 
+    public Project(int id, String title, Storages storages) {
+        this.title = title;
+        this.id = id;
+        count = id;// <-- необходимо, чтобы после загрузки данных из базы, значение count было актуальным
+        storages.add(id,this);
+    }
+
     public String getTitle() {
         return title;
     }

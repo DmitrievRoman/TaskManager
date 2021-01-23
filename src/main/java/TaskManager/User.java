@@ -13,6 +13,12 @@ public class User extends Unit {
         this.id = ++count;
         storages.add(id, this);
     }
+    public User (int id, String name, Storages storages) {
+        this.id = id;
+        this.name = name;
+        storages.add(id,this);
+        count = id;// <-- необходимо, чтобы после загрузки данных из базы, значение count было актуальным
+    }
 
     public String getName() {
         return name;

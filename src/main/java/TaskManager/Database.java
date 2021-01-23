@@ -1,8 +1,5 @@
 package TaskManager;
-import java.sql.Statement;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Map;
 
 public class Database {
@@ -48,6 +45,8 @@ public class Database {
     }
 
     public void save(Map<Integer,User> usersMap, Map<Integer,Project> projectsMap, Map<Integer,Task> tasksMap) throws SQLException {
+
+        //перед тем как сохранять надо дропнуть базу иначе будут дубликаты и программа упадет
             for(Map.Entry<Integer, User> pair : usersMap.entrySet()){
                 statement.executeUpdate("insert into users (user_id,name) values ('" +pair.getKey() +"','" + pair.getValue().getName() + "')");
             }
@@ -66,7 +65,29 @@ public class Database {
             }
     }
 
-    public void load(Storages storages) {
-
+    public void load(Storages storages) throws SQLException {
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM users");
+        while(resultSet.next()) {
+            int id = resultSet.getInt("user_id");
+            String name = resultSet.getString("name");
+            new User(id, name, storages);
+        }
+        ResultSet resultSetProjects = statement.executeQuery("SELECT * FROM projects");
+        while (resultSetProjects.next()){
+            int id = resultSetProjects.getInt("project_id");
+            String title = resultSetProjects.getString("title");
+            new Project(id, title,storages);
+        }
+        ResultSet resultSetTasks = statement.executeQuery("SELECT * FROM tasks");
+        while (resultSetTasks.next()) {
+            int id = resultSetTasks.getInt("task_id");
+            String title = resultSetTasks.getString("title");
+            int project_id = resultSetTasks.getInt("project_id");
+            String type = resultSetTasks.getString("type");
+            String priority = resultSetTasks.getString("priority");
+            int executor_id = resultSetTasks.getInt("executor_id");
+            String description = resultSetTasks.getString("description");
+            new Task(id, title, type, priority, description, project_id, executor_id, storages);
+        }
     }
 }

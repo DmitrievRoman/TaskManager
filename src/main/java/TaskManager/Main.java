@@ -33,9 +33,9 @@ public class Main {
 //        dbM.createProjectsTable();
 //        dbM.createTasksTable();
         Database database = new Database();
-        database.createUsersTable();
-        database.createProjectsTable();
-        database.createTasksTable();
+//        database.createUsersTable();
+//        database.createProjectsTable();
+//        database.createTasksTable();
 //        statement.executeUpdate("CREATE TABLE users(user_id int AUTO_INCREMENT PRIMARY KEY," +
 //                " name VARCHAR(20) NOT NULL)");
         mainLoop.getMenu();
@@ -116,7 +116,7 @@ public class Main {
                             System.out.println("Вы ввели не число или несуществующий id");
                         }
                         break;
-                    case "8":
+                    case "8":// работает не корректно
                         storages.getAllProjects();
                         System.out.println("Введите id проекта");
                         String projectIdForInfo = reader.readLine();
@@ -146,6 +146,9 @@ public class Main {
                         break;
                     case"save":
                         storages.saveToDatabase(database);
+                        break;
+                    case "load":
+                        database.load(storages);
                 }
             } else {
                 System.out.println("Введите число");

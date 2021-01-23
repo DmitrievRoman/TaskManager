@@ -23,6 +23,20 @@ public class Task extends Unit {
         project.add(this);
         project.add(executor);
     }
+    public Task(int id, String topic, String type, String priority, String description, int project_id, int executor_id, Storages storages) {
+        this.id = id;
+        this.topic = topic;
+        this.type = type;
+        this.priority = priority;
+        this.description = description;
+        this.project = storages.getProjectById(project_id);
+        this.executor = storages.getUserById(executor_id);
+        count = id; // <-- необходимо, чтобы после загрузки данных из базы, значение count было актуальным
+        storages.add(id, this);
+        storages.getUserById(executor_id).addTask(this);
+        storages.getProjectById(project_id).add(this);
+        storages.getProjectById(project_id).add(storages.getUserById(executor_id));
+    }
     public String getTitle() {
         return topic;
     }
