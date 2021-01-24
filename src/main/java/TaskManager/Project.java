@@ -1,5 +1,6 @@
 package TaskManager;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Project extends Unit{
@@ -9,10 +10,11 @@ public class Project extends Unit{
     private ArrayList<User> users = new ArrayList<User>();
     private ArrayList<Task> tasks = new ArrayList<Task>();
 
-    public Project(String title, Storages storages) {
+    public Project(String title, Storages storages) throws SQLException {
         this.title = title;
         this.id = ++count;
         storages.add(id,this);
+        Database.add(this); //Добавляем проект в базу данных
     }
 
     public Project(int id, String title, Storages storages) {

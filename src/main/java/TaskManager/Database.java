@@ -1,6 +1,5 @@
 package TaskManager;
 import java.sql.*;
-import java.util.Map;
 
 public class Database {
     public static final String USER_NAME = "root";
@@ -25,15 +24,15 @@ public class Database {
         }
     }
 
-    public void createUsersTable() throws SQLException, ClassNotFoundException {
+    public void createUsersTable() throws SQLException {
         statement.executeUpdate("CREATE TABLE users(user_id int PRIMARY KEY," +
                 " name VARCHAR(20) NOT NULL)");
     }
-    public void createProjectsTable() throws SQLException, ClassNotFoundException {
+    public void createProjectsTable() throws SQLException {
         statement.executeUpdate("CREATE TABLE projects(project_id int PRIMARY KEY," +
                 " title VARCHAR(30) NOT NULL)");
     }
-    public void createTasksTable() throws SQLException, ClassNotFoundException {
+    public void createTasksTable() throws SQLException {
         statement.executeUpdate("CREATE TABLE tasks (" +
                 "task_id INTEGER AUTO_INCREMENT PRIMARY KEY," +
                 "title VARCHAR(30) NOT NULL," +
@@ -43,26 +42,21 @@ public class Database {
                 "executor_id INTEGER REFERENCES users(user_id)," +
                 "description VARCHAR(300))");
     }
-
-    public void save(Map<Integer,User> usersMap, Map<Integer,Project> projectsMap, Map<Integer,Task> tasksMap) throws SQLException {
-
-        //перед тем как сохранять надо дропнуть базу иначе будут дубликаты и программа упадет
-            for(Map.Entry<Integer, User> pair : usersMap.entrySet()){
-                statement.executeUpdate("insert into users (user_id,name) values ('" +pair.getKey() +"','" + pair.getValue().getName() + "')");
-            }
-            for(Map.Entry<Integer, Project> pair : projectsMap.entrySet()) {
-                statement.executeUpdate("insert into projects (project_id,title) values ('" +pair.getKey() +"','" + pair.getValue().getTitle() + "')");
-            }
-            for(Map.Entry<Integer, Task> pair : tasksMap.entrySet()){
-                statement.executeUpdate("insert into tasks(task_id, title, project_id, type, priority, executor_id, description)" +
-                        " values('"+ pair.getKey() + "'," +
-                        "'" + pair.getValue().getTitle() + "'," +
-                        "'" + pair.getValue().getProject().getId() + "'," +
-                        "'" + pair.getValue().getType() + "'," +
-                        "'" + pair.getValue().getPriority() + "'," +
-                        "'" + pair.getValue().getExecutor().getId() + "'," +
-                        "'" + pair.getValue().getDescription() + "' )");
-            }
+    public static void add(User user) throws SQLException {
+        statement.executeUpdate("insert into users (user_id,name) values ('" + user.getId() +"','" + user.getName() + "')");
+    }
+    public static void add(Project project) throws SQLException {
+        statement.executeUpdate("insert into projects (project_id,title) values ('" + project.getId() +"','" + project.getTitle() + "')");
+    }
+    public static void add(Task task) throws SQLException {
+        statement.executeUpdate("insert into tasks(task_id, title, project_id, type, priority, executor_id, description)" +
+                " values('"+ task.getId() + "'," +
+                "'" + task.getTitle() + "'," +
+                "'" + task.getProject().getId() + "'," +
+                "'" + task.getType() + "'," +
+                "'" + task.getPriority() + "'," +
+                "'" + task.getExecutor().getId() + "'," +
+                "'" + task.getDescription() + "' )");
     }
 
     public void load(Storages storages) throws SQLException {

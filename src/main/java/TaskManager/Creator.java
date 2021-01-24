@@ -1,7 +1,9 @@
 package TaskManager;
 
+import java.sql.SQLException;
+
 public class Creator {
-    public void createUser(String name, Storages storages) {
+    public void createUser(String name, Storages storages) throws SQLException {
         if(!name.equals("")) {
             new User(name, storages);
         }
@@ -14,7 +16,7 @@ public class Creator {
             return false;
         }
     }
-    public void createProject(String title, Storages storages) {
+    public void createProject(String title, Storages storages) throws SQLException {
         if(!title.equals("")) {
             new Project(title, storages);
         }
@@ -38,7 +40,7 @@ public class Creator {
             } else {
                 return false;
             }
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | SQLException e) {
             return false;
         }
         return true;

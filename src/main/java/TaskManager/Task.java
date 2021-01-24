@@ -1,5 +1,7 @@
 package TaskManager;
 
+import java.sql.SQLException;
+
 public class Task extends Unit {
     private static int count;
     private Project project;
@@ -10,7 +12,7 @@ public class Task extends Unit {
     private String description;
     private Integer id;
 
-    public Task(Project project, String topic, String type, String priority, User executor, String description, Storages storages) {
+    public Task(Project project, String topic, String type, String priority, User executor, String description, Storages storages) throws SQLException {
         this.project = project;
         this.topic = topic;
         this.type = type;
@@ -22,6 +24,7 @@ public class Task extends Unit {
         executor.addTask(this);
         project.add(this);
         project.add(executor);
+        Database.add(this);//Добавляем задачу в базу данных
     }
     public Task(int id, String topic, String type, String priority, String description, int project_id, int executor_id, Storages storages) {
         this.id = id;

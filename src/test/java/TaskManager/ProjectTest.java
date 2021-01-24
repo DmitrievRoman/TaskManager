@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ProjectTest {
@@ -17,7 +18,7 @@ public class ProjectTest {
     private Project project;
     private Project project1;
     @Before
-    public void setUp() {
+    public void setUp() throws SQLException {
         Storages storages = new Storages();
         user = new User("UserName", storages);
         user1 = new User("UserName1", storages);

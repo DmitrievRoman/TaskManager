@@ -3,6 +3,8 @@ package TaskManager;
 import junit.framework.TestCase;
 import org.junit.Before;
 
+import java.sql.SQLException;
+
 public class StoragesTest extends TestCase {
     private User user;
     private User user1;
@@ -11,7 +13,7 @@ public class StoragesTest extends TestCase {
     private Project project;
     private Project project1;
     @Before
-    public void setUp() {
+    public void setUp() throws SQLException {
         Storages storages = new Storages();
         user = new User("UserName", storages);
         user1 = new User("UserName1", storages);

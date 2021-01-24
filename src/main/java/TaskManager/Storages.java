@@ -67,7 +67,7 @@ public class Storages {
                 System.out.println(pair.getKey() + ":" + pair.getValue().getName());
             }
         } else {
-            System.out.println("Список польхователей пуст");
+            System.out.println("Список пользователей пуст");
         }
     }
     public void getAllProjects() {
@@ -123,8 +123,5 @@ public class Storages {
     }
     public boolean isExist(Project project) {
         return projects.containsValue(project);
-    }
-    public void saveToDatabase(Database database) throws SQLException {
-        database.save(users,projects,tasks);
     }
 }
