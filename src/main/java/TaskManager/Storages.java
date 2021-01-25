@@ -1,13 +1,12 @@
 package TaskManager;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Storages {
-    private Map<Integer, User> users = new HashMap<Integer, User>();
-    private Map<Integer, Project> projects = new HashMap<Integer, Project>();
-    private Map<Integer, Task> tasks = new HashMap<Integer, Task>();
+    private final Map<Integer, User> users = new HashMap<>();
+    private final Map<Integer, Project> projects = new HashMap<>();
+    private final Map<Integer, Task> tasks = new HashMap<>();
 
     public void add(Integer id, User user) {
         users.put(id, user);

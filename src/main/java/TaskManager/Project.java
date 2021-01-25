@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public class Project extends Unit{
     private static int count;
-    private String title;
-    private Integer id;
-    private ArrayList<User> users = new ArrayList<User>();
-    private ArrayList<Task> tasks = new ArrayList<Task>();
+    private final String title;
+    private final Integer id;
+    private final ArrayList<User> users = new ArrayList<>();
+    private final ArrayList<Task> tasks = new ArrayList<>();
 
     public Project(String title, Storages storages) throws SQLException {
         this.title = title;
@@ -62,7 +62,7 @@ public class Project extends Unit{
         }
     }
     public ArrayList<Integer> getAllTasksId(){
-        ArrayList<Integer> tasksId = new ArrayList<Integer>();
+        ArrayList<Integer> tasksId = new ArrayList<>();
         for (Task task : tasks) {
             tasksId.add(task.getId());
         }

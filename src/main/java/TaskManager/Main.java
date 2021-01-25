@@ -19,12 +19,12 @@ public class Main {
             String userInput = reader.readLine();
             if (!userInput.isEmpty()) {
                 switch (userInput) {
-                    case "1":
+                    case "1": //Создать пользователя
                         System.out.println("Введите имя пользователя:");
                         String userName = reader.readLine();
                         creator.createUser(userName, storages);
                         break;
-                    case "2":
+                    case "2"://Удалить пользователя
                         storages.getAllUsers();
                         System.out.println("Введите id пользователя для удаления");
                         String idForDelete = reader.readLine();
@@ -34,12 +34,12 @@ public class Main {
                             System.out.println("Вы ввели не число или несуществующий id");
                         }
                         break;
-                    case "3":
+                    case "3"://Создать проект
                         System.out.println("Введите название проекта");
                         String projectTitle = reader.readLine();
                         creator.createProject(projectTitle, storages);
                         break;
-                    case "4":
+                    case "4"://Удалить проект
                         storages.getAllProjects();
                         System.out.println("Введите id проекта для удаления");
                         String projectIdForDelete = reader.readLine();
@@ -49,7 +49,7 @@ public class Main {
                             System.out.println("Вы ввели не число или несуществующий id");
                         }
                         break;
-                    case "5":
+                    case "5"://Создать задачу
                         System.out.println("Введите название задачи");
                         String taskTopic = reader.readLine();
                         System.out.println("Введите тип задачи");
@@ -71,7 +71,7 @@ public class Main {
                             System.out.println("Задача не создана");
                         }
                         break;
-                    case "6":
+                    case "6"://Удалить задачу
                         storages.getAllTasks();
                         String taskIdForDelete = reader.readLine();
                         if (creator.deleteTask(taskIdForDelete, storages)) {
@@ -80,7 +80,7 @@ public class Main {
                             System.out.println("Вы ввели не число или несуществующий id");
                         }
                         break;
-                    case "7":
+                    case "7":// Вывести список задач назначенных на пользователя
                         storages.getAllUsers();
                         System.out.println("Введите id пользователя");
                         String userId = reader.readLine();
@@ -91,18 +91,18 @@ public class Main {
                             System.out.println("Вы ввели не число или несуществующий id");
                         }
                         break;
-                    case "8":// работает не корректно
+                    case "8"://Вывести список всех задач в проекте
                         storages.getAllProjects();
                         System.out.println("Введите id проекта");
                         String projectIdForInfo = reader.readLine();
                         try {
                             int intProjectIdForInfo = Integer.parseInt(projectIdForInfo);
-                            storages.displayAllProjectUsersById(intProjectIdForInfo);
+                            storages.getProjectById(intProjectIdForInfo).getProjectTasksList();
                         } catch (NumberFormatException e) {
                             System.out.println("Вы ввели не число или несуществующий id");
                         }
                         break;
-                    case "9":
+                    case "9"://Вывести список всех пользователей в проекте
                         storages.getAllProjects();
                         System.out.println("Введите id проекта");
                         String projectIdForUsersList = reader.readLine();
@@ -113,16 +113,16 @@ public class Main {
                             System.out.println("Вы ввели не число или несуществующий id");
                         }
                         break;
-                    case "10":
+                    case "10"://Вывести список всех проектов
                         storages.getAllProjects();
                         break;
-                    case "11":
+                    case "11"://Вывести список всех пользователей
                         storages.getAllUsers();
                         break;
                     case "load":
                         database.load(storages);
                         break;
-                    case "menu":
+                    case "menu"://Вывести список команд
                         Menu.getMenu();
                         break;
                 }
