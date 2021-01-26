@@ -6,13 +6,8 @@ import java.io.InputStreamReader;
 import java.sql.SQLException;
 
 public class MainLoop {
-    public static void mainLoop() throws SQLException, IOException{
-        Storages storages = new Storages();
+    public static void mainLoop(Storages storages) throws SQLException, IOException{
         Creator creator = new Creator();
-        Database database = new Database();
-//        database.createUsersTable();
-//        database.createProjectsTable();
-//        database.createTasksTable();
         Menu.getMenu();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
@@ -119,9 +114,9 @@ public class MainLoop {
                     case "11"://Вывести список всех пользователей
                         storages.getAllUsers();
                         break;
-                    case "load":
-                        database.load(storages);
-                        break;
+//                    case "load":
+//                        database.load(storages);
+//                        break;
                     case "menu"://Вывести список команд
                         Menu.getMenu();
                         break;

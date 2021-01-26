@@ -55,6 +55,18 @@ public class Database {
     public static void addLastId(int id) throws SQLException {
         statement.executeUpdate("insert into last_id(id) values ('" + id + "')");
     }
+    public static boolean isExist() throws SQLException {
+        ResultSet resultSet = statement.executeQuery("SHOW TABLES");
+        while (resultSet.next()) {
+            if(resultSet.getString(1).equals("last_id"));
+            return true;
+        }
+        return false;
+    }
+    public static int getCount() throws SQLException {
+        ResultSet resultSet = statement.executeQuery("SELECT id FROM last_id");
+        return resultSet.getInt("id");
+    }
 
     public static void add(User user) throws SQLException {
         statement.executeUpdate("insert into users (user_id,name) values ('" + user.getId() +"','" + user.getName() + "')");
@@ -73,20 +85,20 @@ public class Database {
                 "'" + task.getDescription() + "' )");
     }
 
-    public void load(Storages storages) throws SQLException {
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM users");
+    public static void load(Storages storages, int count) throws SQLException {
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM users" + count);
         while(resultSet.next()) {
             int id = resultSet.getInt("user_id");
             String name = resultSet.getString("name");
             new User(id, name, storages);
         }
-        ResultSet resultSetProjects = statement.executeQuery("SELECT * FROM projects");
+        ResultSet resultSetProjects = statement.executeQuery("SELECT * FROM projects" + count);
         while (resultSetProjects.next()){
             int id = resultSetProjects.getInt("project_id");
             String title = resultSetProjects.getString("title");
             new Project(id, title,storages);
         }
-        ResultSet resultSetTasks = statement.executeQuery("SELECT * FROM tasks");
+        ResultSet resultSetTasks = statement.executeQuery("SELECT * FROM tasks" + count);
         while (resultSetTasks.next()) {
             int id = resultSetTasks.getInt("task_id");
             String title = resultSetTasks.getString("title");
