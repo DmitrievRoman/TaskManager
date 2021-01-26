@@ -15,7 +15,12 @@ public class Menu {
         System.out.println("11.Вывести список всех пользователей");
         System.out.println("Введите:\n'load' - чтобы загрузить данные из базы");
         System.out.println("'menu' чтобы еще раз увидеть данное меню");
+    }
 
+    public static void getStartMenu() {
+        System.out.println("1.Новая сессия");
+        System.out.println("2.Загрузить прошлую сессию");
+        System.out.println("3.Выбрать сессию для загрузки");
     }
 
 }

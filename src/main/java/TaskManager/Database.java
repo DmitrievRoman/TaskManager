@@ -7,6 +7,7 @@ public class Database {
     public static final String URL = "jdbc:mysql://localhost:3306/test";
     public static Statement statement;
     public static Connection connection;
+    public static int count;
 
     static {
         try {
@@ -23,17 +24,23 @@ public class Database {
             e.printStackTrace();
         }
     }
+    public static void createTables() throws SQLException {
+        createUsersTable();
+        createProjectsTable();
+        createTasksTable();
+        count++;
+    }
 
-    public void createUsersTable() throws SQLException {
-        statement.executeUpdate("CREATE TABLE users(user_id int PRIMARY KEY," +
+    public static void createUsersTable() throws SQLException {
+        statement.executeUpdate("CREATE TABLE users" + count + "(user_id int PRIMARY KEY," +
                 " name VARCHAR(20) NOT NULL)");
     }
-    public void createProjectsTable() throws SQLException {
-        statement.executeUpdate("CREATE TABLE projects(project_id int PRIMARY KEY," +
+    public static void createProjectsTable() throws SQLException {
+        statement.executeUpdate("CREATE TABLE projects" + count + "(project_id int PRIMARY KEY," +
                 " title VARCHAR(30) NOT NULL)");
     }
-    public void createTasksTable() throws SQLException {
-        statement.executeUpdate("CREATE TABLE tasks (" +
+    public static void createTasksTable() throws SQLException {
+        statement.executeUpdate("CREATE TABLE tasks" + count + " (" +
                 "task_id INTEGER AUTO_INCREMENT PRIMARY KEY," +
                 "title VARCHAR(30) NOT NULL," +
                 "project_id INTEGER REFERENCES projects(project_id)," +
@@ -42,6 +49,13 @@ public class Database {
                 "executor_id INTEGER REFERENCES users(user_id)," +
                 "description VARCHAR(300))");
     }
+    public static void createTableWithLastId() throws SQLException {
+        statement.executeUpdate("CREATE TABLE last_id(id INTEGER)");
+    }
+    public static void addLastId(int id) throws SQLException {
+        statement.executeUpdate("insert into last_id(id) values ('" + id + "')");
+    }
+
     public static void add(User user) throws SQLException {
         statement.executeUpdate("insert into users (user_id,name) values ('" + user.getId() +"','" + user.getName() + "')");
     }
