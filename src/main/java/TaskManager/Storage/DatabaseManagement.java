@@ -1,4 +1,4 @@
-package TaskManager;
+package TaskManager.Storage;
 import java.sql.*;
 public class DatabaseManagement  {
 //    public DatabaseManagement() throws ClassNotFoundException, SQLException {

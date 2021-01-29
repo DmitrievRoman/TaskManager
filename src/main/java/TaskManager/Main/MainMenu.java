@@ -1,4 +1,8 @@
-package TaskManager;
+package TaskManager.Main;
+
+import TaskManager.Menu.Menu;
+import TaskManager.Storage.Database;
+import TaskManager.Storage.Storages;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,6 +27,10 @@ public class MainMenu {
                             int count = Database.getCount();
                             Database.load(storages, count);
                         }
+                        break;
+                    case"3":
+
+                        break;
                 }
             } else {
                 System.out.println("Введите число");

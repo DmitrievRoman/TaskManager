@@ -1,5 +1,9 @@
 package TaskManager;
 
+import TaskManager.Storage.Storages;
+import TaskManager.Units.Project;
+import TaskManager.Units.Task;
+import TaskManager.Units.User;
 import junit.framework.TestCase;
 import org.junit.Before;
 

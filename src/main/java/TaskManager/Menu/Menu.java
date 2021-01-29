@@ -1,4 +1,4 @@
-package TaskManager;
+package TaskManager.Menu;
 
 public class Menu {
     public static void getMenu() {

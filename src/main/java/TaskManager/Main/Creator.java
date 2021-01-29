@@ -1,4 +1,9 @@
-package TaskManager;
+package TaskManager.Main;
+
+import TaskManager.Storage.Storages;
+import TaskManager.Units.Project;
+import TaskManager.Units.Task;
+import TaskManager.Units.User;
 
 import java.sql.SQLException;
 

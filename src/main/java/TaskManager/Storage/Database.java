@@ -1,4 +1,8 @@
-package TaskManager;
+package TaskManager.Storage;
+import TaskManager.Units.Project;
+import TaskManager.Units.Task;
+import TaskManager.Units.User;
+
 import java.sql.*;
 
 public class Database {
@@ -7,7 +11,7 @@ public class Database {
     public static final String URL = "jdbc:mysql://localhost:3306/test";
     public static Statement statement;
     public static Connection connection;
-    public static int count;
+    public static int count = (int)(Math.random() * 100);
 
     static {
         try {
@@ -25,10 +29,20 @@ public class Database {
         }
     }
     public static void createTables() throws SQLException {
+        ResultSet resultSet = statement.executeQuery("SHOW TABLES");
+        while (resultSet.next()){
+            String s = "users" + count;
+            //if(resultSet.getString(1).equals(s))
+            //надо проверить названия всех таблиц, если нашли совпадение, значит надо изменить count и пройтись еще раз до тех пор, пока не будет уникального элемента
+            //если совпадения не найдены, выполняем код, приведенный ниже
+        }
         createUsersTable();
         createProjectsTable();
         createTasksTable();
-        count++;
+        if (!isExist()){
+            createTableWithLastId();
+        }
+        addLastId(count);
     }
 
     public static void createUsersTable() throws SQLException {

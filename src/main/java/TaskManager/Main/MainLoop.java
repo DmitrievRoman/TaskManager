@@ -1,4 +1,7 @@
-package TaskManager;
+package TaskManager.Main;
+
+import TaskManager.Menu.Menu;
+import TaskManager.Storage.Storages;
 
 import java.io.BufferedReader;
 import java.io.IOException;

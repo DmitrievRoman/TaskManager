@@ -1,9 +1,12 @@
-package TaskManager;
+package TaskManager.Units;
+
+import TaskManager.Storage.Database;
+import TaskManager.Storage.Storages;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Project extends Unit{
+public class Project extends Unit {
     private static int count;
     private final String title;
     private final Integer id;

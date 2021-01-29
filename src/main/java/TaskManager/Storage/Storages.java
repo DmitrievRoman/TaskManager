@@ -1,4 +1,8 @@
-package TaskManager;
+package TaskManager.Storage;
+
+import TaskManager.Units.Project;
+import TaskManager.Units.Task;
+import TaskManager.Units.User;
 
 import java.util.HashMap;
 import java.util.Map;
