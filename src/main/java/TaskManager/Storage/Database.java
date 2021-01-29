@@ -11,7 +11,7 @@ public class Database {
     public static final String URL = "jdbc:mysql://localhost:3306/test";
     public static Statement statement;
     public static Connection connection;
-    public static int count = (int)(Math.random() * 100);
+    public static int random = (int)(Math.random() * 100);
 
     static {
         try {
@@ -28,13 +28,25 @@ public class Database {
             e.printStackTrace();
         }
     }
+    //Данный метод создает новые таблицы (users, projects, tasks), для того, чтобы избежать одинаковых названий таблиц,
+    //после названия таблицы добавляется рандомное число от 0 до 99
+    //в цикле идет проверка на уникальность имени, цикл будет выполняться до тех пор пока не будет сгенерировано уникальное имя таблицы
     public static void createTables() throws SQLException {
         ResultSet resultSet = statement.executeQuery("SHOW TABLES");
-        while (resultSet.next()){
-            String s = "users" + count;
-            //if(resultSet.getString(1).equals(s))
-            //надо проверить названия всех таблиц, если нашли совпадение, значит надо изменить count и пройтись еще раз до тех пор, пока не будет уникального элемента
-            //если совпадения не найдены, выполняем код, приведенный ниже
+        boolean a = true;
+        boolean b; //Если b = false значит таблица с таким именем уже есть и надо пройти цикл еще раз
+        while (a) {
+            b = true;
+            while (resultSet.next()) {
+                String s = "users" + random;
+                if(resultSet.getString(1).equals(s)){
+                    random = (int)(Math.random() * 100);
+                    b = false;
+                }
+            }
+            if(b){
+                a = false;
+            }
         }
         createUsersTable();
         createProjectsTable();
@@ -42,19 +54,19 @@ public class Database {
         if (!isExist()){
             createTableWithLastId();
         }
-        addLastId(count);
+        addLastId(random);
     }
 
     public static void createUsersTable() throws SQLException {
-        statement.executeUpdate("CREATE TABLE users" + count + "(user_id int PRIMARY KEY," +
+        statement.executeUpdate("CREATE TABLE users" + random + "(user_id int PRIMARY KEY," +
                 " name VARCHAR(20) NOT NULL)");
     }
     public static void createProjectsTable() throws SQLException {
-        statement.executeUpdate("CREATE TABLE projects" + count + "(project_id int PRIMARY KEY," +
+        statement.executeUpdate("CREATE TABLE projects" + random + "(project_id int PRIMARY KEY," +
                 " title VARCHAR(30) NOT NULL)");
     }
     public static void createTasksTable() throws SQLException {
-        statement.executeUpdate("CREATE TABLE tasks" + count + " (" +
+        statement.executeUpdate("CREATE TABLE tasks" + random + " (" +
                 "task_id INTEGER AUTO_INCREMENT PRIMARY KEY," +
                 "title VARCHAR(30) NOT NULL," +
                 "project_id INTEGER REFERENCES projects(project_id)," +
@@ -67,6 +79,7 @@ public class Database {
         statement.executeUpdate("CREATE TABLE last_id(id INTEGER)");
     }
     public static void addLastId(int id) throws SQLException {
+        statement.executeUpdate("DELETE FROM last_id");
         statement.executeUpdate("insert into last_id(id) values ('" + id + "')");
     }
     public static boolean isExist() throws SQLException {
@@ -77,9 +90,9 @@ public class Database {
         }
         return false;
     }
-    public static int getCount() throws SQLException {
+    public static int getLastId() throws SQLException {
         ResultSet resultSet = statement.executeQuery("SELECT id FROM last_id");
-        return resultSet.getInt("id");
+        return resultSet.getInt(1);
     }
 
     public static void add(User user) throws SQLException {

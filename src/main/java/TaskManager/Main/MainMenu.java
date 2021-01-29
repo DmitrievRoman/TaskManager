@@ -23,8 +23,9 @@ public class MainMenu {
                         MainLoop.mainLoop(storages);
                         break;
                     case"2":
+                        //не работает
                         if(Database.isExist()) {
-                            int count = Database.getCount();
+                            int count = Database.getLastId();
                             Database.load(storages, count);
                         }
                         break;
