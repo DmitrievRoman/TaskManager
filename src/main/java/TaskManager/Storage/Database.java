@@ -66,13 +66,13 @@ public class Database {
                 " title VARCHAR(30) NOT NULL)");
     }
     public static void createTasksTable() throws SQLException {
-        statement.executeUpdate("CREATE TABLE tasks" + random + " (" +
-                "task_id INTEGER AUTO_INCREMENT PRIMARY KEY," +
+        statement.executeUpdate("CREATE TABLE tasks" + random + "(" +
+                "task_id int PRIMARY KEY," +
                 "title VARCHAR(30) NOT NULL," +
-                "project_id INTEGER REFERENCES projects(project_id)," +
+                "project_id int REFERENCES projects(project_id)," +
                 "type VARCHAR(30)," +
                 "priority VARCHAR(30)," +
-                "executor_id INTEGER REFERENCES users(user_id)," +
+                "executor_id int REFERENCES users(user_id)," +
                 "description VARCHAR(300))");
     }
     public static void createTableWithLastId() throws SQLException {
@@ -85,31 +85,32 @@ public class Database {
     public static boolean isExist() throws SQLException {
         ResultSet resultSet = statement.executeQuery("SHOW TABLES");
         while (resultSet.next()) {
-            if(resultSet.getString(1).equals("last_id"));
-            return true;
+            if(resultSet.getString(1).equals("last_id")) {
+                return true;
+            }
         }
         return false;
     }
     public static int getLastId() throws SQLException {
         ResultSet resultSet = statement.executeQuery("SELECT id FROM last_id");
-        return resultSet.getInt(1);
+        int lastId = 0;
+        if(resultSet.next()) {
+             lastId = resultSet.getInt("id");
+        }
+        return lastId;
     }
 
     public static void add(User user) throws SQLException {
-        statement.executeUpdate("insert into users (user_id,name) values ('" + user.getId() +"','" + user.getName() + "')");
+        int id = getLastId();
+        statement.executeUpdate("insert into users" + id + " (user_id,name) values ('" + user.getId() +"','" + user.getName() + "')");
     }
     public static void add(Project project) throws SQLException {
-        statement.executeUpdate("insert into projects (project_id,title) values ('" + project.getId() +"','" + project.getTitle() + "')");
+        int id = getLastId();
+        statement.executeUpdate("insert into projects" + id + "(project_id,title) values ('" + project.getId() +"','" + project.getTitle() + "')");
     }
     public static void add(Task task) throws SQLException {
-        statement.executeUpdate("insert into tasks(task_id, title, project_id, type, priority, executor_id, description)" +
-                " values('"+ task.getId() + "'," +
-                "'" + task.getTitle() + "'," +
-                "'" + task.getProject().getId() + "'," +
-                "'" + task.getType() + "'," +
-                "'" + task.getPriority() + "'," +
-                "'" + task.getExecutor().getId() + "'," +
-                "'" + task.getDescription() + "' )");
+        int id = getLastId();
+        statement.executeUpdate("insert into tasks" + id + " (task_id,title,project_id,type,priority,executor_id,description) values ('" + task.getId() + "','" + task.getTitle() + "','" + task.getProject().getId() + "','" + task.getType() + "','" + task.getPriority() + "','" + task.getExecutor().getId() + "','" + task.getDescription() + "')");
     }
 
     public static void load(Storages storages, int count) throws SQLException {

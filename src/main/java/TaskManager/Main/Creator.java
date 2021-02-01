@@ -8,10 +8,12 @@ import TaskManager.Units.User;
 import java.sql.SQLException;
 
 public class Creator {
-    public void createUser(String name, Storages storages) throws SQLException {
+    public boolean createUser(String name, Storages storages) throws SQLException {
         if(!name.equals("")) {
             new User(name, storages);
+            return true;
         }
+        return false;
     }
     public boolean deleteUser(String id, Storages storages) {
         try{
@@ -41,14 +43,16 @@ public class Creator {
             if ((storages.isExist(storages.getProjectById(intProjectId))) && (storages.isExist(storages.getUserById(intExecutorId)))) {
                 Project project = storages.getProjectById(intProjectId);
                 User executor = storages.getUserById(intExecutorId);
+                System.out.println("до создания объекта");
                 new Task(project, topic, type, priority, executor, description, storages);
+                System.out.println("после создания объекта");
+                return true;
             } else {
                 return false;
             }
         } catch (NumberFormatException | SQLException e) {
             return false;
         }
-        return true;
     }
     public boolean deleteTask(String id, Storages storages) {
         try {

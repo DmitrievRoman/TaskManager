@@ -61,5 +61,8 @@ public class Task extends Unit {
     public String getDescription() {
         return description;
     }
+    public Integer getId(){
+        return id;
+    }
 
 }

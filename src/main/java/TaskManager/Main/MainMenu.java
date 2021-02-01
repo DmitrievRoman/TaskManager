@@ -27,7 +27,9 @@ public class MainMenu {
                         if(Database.isExist()) {
                             int count = Database.getLastId();
                             Database.load(storages, count);
+                            MainLoop.mainLoop(storages);
                         }
+
                         break;
                     case"3":
 

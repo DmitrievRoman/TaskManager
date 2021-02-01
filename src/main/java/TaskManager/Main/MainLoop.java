@@ -20,7 +20,11 @@ public class MainLoop {
                     case "1": //Создать пользователя
                         System.out.println("Введите имя пользователя:");
                         String userName = reader.readLine();
-                        creator.createUser(userName, storages);
+                        if(creator.createUser(userName, storages)){
+                            System.out.println("Пользователь создан успешно");
+                        } else {
+                            System.out.println("Пользователь не создан");
+                        }
                         break;
                     case "2"://Удалить пользователя
                         storages.getAllUsers();
