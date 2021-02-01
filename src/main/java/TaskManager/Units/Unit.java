@@ -1,11 +1,8 @@
 package TaskManager.Units;
 
-public class Unit {
-    private Integer id;
+public abstract class Unit {
 
-    public Integer getId() {
-        return id;
-    }
+    public abstract Integer getId();
 
 
 }

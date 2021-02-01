@@ -97,7 +97,7 @@ public class Storages {
     public void displayAllTasksForUserById(int id) {
         if(users.containsKey(id)){
             User user = users.get(id);
-            user.getUserTasksList();
+            user.displayUserTasksList();
         } else {
             System.out.println("Пользователя с таким id не существует");
         }

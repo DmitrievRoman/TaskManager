@@ -27,7 +27,7 @@ public class User extends Unit {
     public String getName() {
         return name;
     }
-    public void getUserTasksList() {
+    public void displayUserTasksList() {
         if (!tasks.isEmpty()) {
             for (Task task : tasks) {
                 System.out.println(task.getTitle());

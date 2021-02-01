@@ -43,9 +43,7 @@ public class Creator {
             if ((storages.isExist(storages.getProjectById(intProjectId))) && (storages.isExist(storages.getUserById(intExecutorId)))) {
                 Project project = storages.getProjectById(intProjectId);
                 User executor = storages.getUserById(intExecutorId);
-                System.out.println("до создания объекта");
                 new Task(project, topic, type, priority, executor, description, storages);
-                System.out.println("после создания объекта");
                 return true;
             } else {
                 return false;
