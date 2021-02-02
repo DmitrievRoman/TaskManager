@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 public class User extends Unit {
     private static int count;
-    private String name;
-    private Integer id;
-    private ArrayList<Task> tasks = new ArrayList<Task>();
+    private final String name;
+    private final Integer id;
+    private final ArrayList<Task> tasks = new ArrayList<>();
 
     public User (String name, Storages storages) throws SQLException {
         this.name = name;
