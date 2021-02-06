@@ -13,21 +13,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserTest {
     private User user;
-    private Project project;
     private Storages storages;
-    private ArrayList<Task> tasks;
+    private Project project;
+    private Task task;
     @Before
     public void setUp() throws Exception {
         storages = new Storages();
         user = new User(0,"Name", storages);
-        project = new Project(0,"ProjectTitle", storages);
-        tasks = new ArrayList<>();
-        tasks.add(new Task(0,"TaskTitle","type","priority","description",project.getId(),user.getId(),storages));
+        project = new Project(0,"ProjectTitle",storages);
+        task = new Task(0,"TaskTitle","type","priority","description",project.getId(),user.getId(),storages);
     }
 
     @After
     public void tearDown() throws Exception {
-        tasks.clear();
+        user.clearTaskList();
     }
 
     @Test
@@ -36,26 +35,23 @@ public class UserTest {
     }
 
     @Test
-    public void displayUserTasksList() {
-        assertEquals("TaskTitle", tasks.get(0).getTitle());
-    }
-
-    @Test
     public void addTask() throws SQLException {
-        tasks.add(new Task(0,"TaskTitle","type","priority","description",project.getId(),user.getId(),storages));
-        assertEquals(2,tasks.size());
+        user.addTask(task);
+        //expected = 2 потому, что в setUp() задача была создана вручную, и конструктор класса Task
+        //сам добавил задачу пользователю на основе id, а в данном методе была добавлена еще одна задача
+        assertEquals(2,user.getTasks().size());
     }
 
     @Test
     public void deleteTask() {
-        tasks.remove(tasks.get(0));
-        assertEquals(0,tasks.size());
+        user.deleteTask(task);
+        assertEquals(0,user.getTasks().size());
     }
 
     @Test
     public void clearTaskList() {
-        tasks.clear();
-        assertEquals(0,tasks.size());
+        user.clearTaskList();
+        assertEquals(0,user.getTasks().size());
     }
 
     @Test

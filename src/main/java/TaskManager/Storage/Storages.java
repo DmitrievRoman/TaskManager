@@ -105,7 +105,7 @@ public class Storages {
     public void displayAllProjectUsersById(int id) {
         if (projects.containsKey(id)) {
             Project project = projects.get(id);
-            project.getProjectUsersList();
+            project.displayUsersList();
         } else {
             System.out.println("Проекта с таким id не существует");
         }
@@ -113,7 +113,7 @@ public class Storages {
     public void displayAllUsersInProjectById(int id) {
         if(projects.containsKey(id)) {
             Project project = projects.get(id);
-            project.getProjectUsersList();
+            project.displayUsersList();
         } else {
             System.out.println("Прроекта с таким id не существует");
         }

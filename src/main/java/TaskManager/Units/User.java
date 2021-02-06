@@ -49,4 +49,8 @@ public class User extends Unit {
     public Integer getId() {
         return id;
     }
+
+    public ArrayList<Task> getTasks() {
+        return tasks;
+    }
 }

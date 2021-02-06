@@ -12,22 +12,20 @@ import static org.junit.Assert.*;
 public class ProjectTest {
     private Project project;
     private User user;
-    private ArrayList<User> users;
-    private ArrayList<Task> tasks;
-    Storages storages;
+    private Storages storages;
+    private Task task;
 
     @Before
     public void setUp(){
         storages = new Storages();
         project = new Project(0,"ProjectTitle", storages);
         user = new User(0,"UserName",storages);
-        users = new ArrayList<>();
-        tasks = new ArrayList<>();
+        task = new Task(0,"TaskTitle","type","priority","description",0,0,storages);
     }
     @After
     public void tearDown() {
-        users.clear();
-        tasks.clear();
+        project.getUsersList().clear();
+        project.getTasksList().clear();
     }
     @Test
     public void getTitle() {
@@ -36,53 +34,31 @@ public class ProjectTest {
 
     @Test
     public void addUserIntoUsersList() {
-        assertEquals(0, users.size());
-        users.add(new User(0, "UserName", storages));
-        assertEquals(1,users.size());
+        assertEquals(1, project.getUsersList().size());
+        project.add(user);
+        assertEquals(2,project.getUsersList().size());
     }
 
     @Test
     public void addTaskIntoTasksList() {
-        assertEquals(0,tasks.size());
-        tasks.add(new Task(0,"TaskTitle","Type","Priority","Description",0,0,storages));
-        assertEquals(1,tasks.size());
-    }
-
-    @Test
-    public void deleteUserFromUsersList() {
-        User user = new User(0,"UserName",storages);
-        users.add(user);
-        assertEquals(1,users.size());
-        project.delete(user);
-        assertEquals(0,users.size());
-    }
-
-    @Test
-    public void deleteTaskFromTasksList() {
-        tasks.add(new Task(0,"TaskTitle","Type","Priority","Description",0,0,storages));
-        assertEquals(1,tasks.size());
-        project.delete(tasks.get(0));
-        assertEquals(0,tasks.size());
+        assertEquals(1,project.getTasksList().size());
+        project.add(task);
+        assertEquals(2,project.getTasksList().size());
     }
 
     @Test
     public void isExist() {
+        project.add(user);
+        assertTrue(project.isExist(user));
     }
-
-    @Test
-    public void getProjectTasksList() {
-    }
-
-    @Test
-    public void getProjectUsersList() {
-    }
-
     @Test
     public void getAllTasksId() {
+
     }
 
     @Test
     public void getId() {
-
+        int actual = project.getId();
+        assertEquals(0,actual);
     }
 }

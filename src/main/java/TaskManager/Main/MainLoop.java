@@ -99,7 +99,7 @@ public class MainLoop {
                         String projectIdForInfo = reader.readLine();
                         try {
                             int intProjectIdForInfo = Integer.parseInt(projectIdForInfo);
-                            storages.getProjectById(intProjectIdForInfo).getProjectTasksList();
+                            storages.getProjectById(intProjectIdForInfo).displayTasksList();
                         } catch (NumberFormatException e) {
                             System.out.println("Вы ввели не число или несуществующий id");
                         }

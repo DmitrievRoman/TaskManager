@@ -30,7 +30,6 @@ public class Project extends Unit {
     public String getTitle() {
         return title;
     }
-
     public void add(User user){
         users.add(user);
     }
@@ -46,7 +45,7 @@ public class Project extends Unit {
     public boolean isExist(User user) {
         return users.contains(user);
     }
-    public void getProjectTasksList() {
+    public void displayTasksList() {
         if (!tasks.isEmpty()) {
             for (Task task : tasks) {
                 System.out.println(task.getTitle());
@@ -55,7 +54,7 @@ public class Project extends Unit {
             System.out.println("В проекте нет ни одной задачи");
         }
     }
-    public void getProjectUsersList() {
+    public void displayUsersList() {
         if (!users.isEmpty()) {
             for (User user : users) {
                 System.out.println(user.getName());
@@ -73,5 +72,11 @@ public class Project extends Unit {
     }
     public Integer getId() {
         return id;
+    }
+    public ArrayList<User> getUsersList() {
+        return users;
+    }
+    public ArrayList<Task> getTasksList() {
+        return tasks;
     }
 }
