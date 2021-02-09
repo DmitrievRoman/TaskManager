@@ -19,7 +19,7 @@ public class Creator {
         try{
             int integerId = Integer.parseInt(id);
             return storages.deleteUser(integerId);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | SQLException e) {
             return false;
         }
     }
@@ -32,7 +32,7 @@ public class Creator {
         try{
             int integerId = Integer.parseInt(id);
             return storages.deleteProject(integerId);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | SQLException e) {
             return false;
         }
     }

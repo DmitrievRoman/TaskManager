@@ -4,6 +4,7 @@ import TaskManager.Units.Project;
 import TaskManager.Units.Task;
 import TaskManager.Units.User;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,9 +22,10 @@ public class Storages {
     public void add(Integer id, Task task) {
         tasks.put(id, task);
     }
-    public boolean deleteUser(int id) {
+    public boolean deleteUser(int id) throws SQLException {
         if(users.containsKey(id)) {
             User user = users.remove(id);
+            Database.delete(user);
             user.clearTaskList();
             for (Map.Entry<Integer, Project> pair : projects.entrySet()) {
                 if(pair.getValue().isExist(user)){
@@ -42,10 +44,10 @@ public class Storages {
             return false;
         }
     }
-    public boolean deleteProject(int id) {
+    public boolean deleteProject(int id) throws SQLException {
         if(projects.containsKey(id)) {
             Project project = projects.remove(id);
-
+            Database.delete(project);
             for (int i = 0; i < project.getAllTasksId().size(); i++) {
                 deleteTask(project.getAllTasksId().get(i));
             }
@@ -100,14 +102,6 @@ public class Storages {
             user.displayUserTasksList();
         } else {
             System.out.println("Пользователя с таким id не существует");
-        }
-    }
-    public void displayAllProjectUsersById(int id) {
-        if (projects.containsKey(id)) {
-            Project project = projects.get(id);
-            project.displayUsersList();
-        } else {
-            System.out.println("Проекта с таким id не существует");
         }
     }
     public void displayAllUsersInProjectById(int id) {

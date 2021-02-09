@@ -112,6 +112,14 @@ public class Database {
         int id = getLastId();
         statement.executeUpdate("insert into tasks" + id + " (task_id,title,project_id,type,priority,executor_id,description) values ('" + task.getId() + "','" + task.getTitle() + "','" + task.getProject().getId() + "','" + task.getType() + "','" + task.getPriority() + "','" + task.getExecutor().getId() + "','" + task.getDescription() + "')");
     }
+    public static void delete(User user) throws SQLException {
+        int id = getLastId();
+        statement.executeUpdate("delete from users" + id + " where user_id = '" + user.getId() + "'");
+    }
+    public static void delete(Project project) throws SQLException {
+        int id = getLastId();
+        statement.executeUpdate("delete from projects" + id + " where project_id = " + project.getId() + "'");
+    }
 
     public static void load(Storages storages, int count) throws SQLException {
         ResultSet resultSet = statement.executeQuery("SELECT * FROM users" + count);
