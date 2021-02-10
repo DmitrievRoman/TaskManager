@@ -101,24 +101,22 @@ public class Database {
     }
 
     public static void add(User user) throws SQLException {
-        int id = getLastId();
-        statement.executeUpdate("insert into users" + id + " (user_id,name) values ('" + user.getId() +"','" + user.getName() + "')");
+        statement.executeUpdate("insert into users" + getLastId() + " (user_id,name) values ('" + user.getId() +"','" + user.getName() + "')");
     }
     public static void add(Project project) throws SQLException {
-        int id = getLastId();
-        statement.executeUpdate("insert into projects" + id + "(project_id,title) values ('" + project.getId() +"','" + project.getTitle() + "')");
+        statement.executeUpdate("insert into projects" + getLastId() + "(project_id,title) values ('" + project.getId() +"','" + project.getTitle() + "')");
     }
     public static void add(Task task) throws SQLException {
-        int id = getLastId();
-        statement.executeUpdate("insert into tasks" + id + " (task_id,title,project_id,type,priority,executor_id,description) values ('" + task.getId() + "','" + task.getTitle() + "','" + task.getProject().getId() + "','" + task.getType() + "','" + task.getPriority() + "','" + task.getExecutor().getId() + "','" + task.getDescription() + "')");
+        statement.executeUpdate("insert into tasks" + getLastId() + " (task_id,title,project_id,type,priority,executor_id,description) values ('" + task.getId() + "','" + task.getTitle() + "','" + task.getProject().getId() + "','" + task.getType() + "','" + task.getPriority() + "','" + task.getExecutor().getId() + "','" + task.getDescription() + "')");
     }
     public static void delete(User user) throws SQLException {
-        int id = getLastId();
-        statement.executeUpdate("delete from users" + id + " where user_id = '" + user.getId() + "'");
+        statement.executeUpdate("delete from users" + getLastId() + " where user_id = '" + user.getId() + "'");
     }
     public static void delete(Project project) throws SQLException {
-        int id = getLastId();
-        statement.executeUpdate("delete from projects" + id + " where project_id = " + project.getId() + "'");
+        statement.executeUpdate("delete from projects" + getLastId() + " where project_id = " + project.getId() + "'");
+    }
+    public static void delete(Task task) throws SQLException {
+        statement.executeUpdate("delete from tasks" + getLastId() + " where tasks_id = " + task.getId() + "'");
     }
 
     public static void load(Storages storages, int count) throws SQLException {

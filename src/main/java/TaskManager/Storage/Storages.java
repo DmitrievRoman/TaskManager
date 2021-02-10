@@ -6,7 +6,9 @@ import TaskManager.Units.User;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class Storages {
     private final Map<Integer, User> users = new HashMap<>();
@@ -36,6 +38,7 @@ public class Storages {
                 if(pair.getValue().getExecutor().equals(user)) {
                     deleteTask(pair.getKey());
                     tasks.remove(pair.getKey());
+                    Database.delete(pair.getValue());
                 }
             }
 
@@ -48,19 +51,22 @@ public class Storages {
         if(projects.containsKey(id)) {
             Project project = projects.remove(id);
             Database.delete(project);
+            //получаем ID всех задач в этом проекте и удаляем их
             for (int i = 0; i < project.getAllTasksId().size(); i++) {
                 deleteTask(project.getAllTasksId().get(i));
+                Database.delete(tasks.get(project.getAllTasksId().get(i)));
             }
             return true;
         } else {
             return false;
         }
     }
-    public boolean deleteTask(int id) {
+    public boolean deleteTask(int id) throws SQLException {
         if(tasks.containsKey(id)){
             Task task = tasks.remove(id);
             task.getExecutor().deleteTask(task);
             task.getProject().delete(task);
+            Database.delete(task);
             return true;
         } else {
             return false;
@@ -107,6 +113,7 @@ public class Storages {
     public void displayAllUsersInProjectById(int id) {
         if(projects.containsKey(id)) {
             Project project = projects.get(id);
+            Set<User> uniqueUsersInProject = new HashSet<>();
             project.displayUsersList();
         } else {
             System.out.println("Прроекта с таким id не существует");

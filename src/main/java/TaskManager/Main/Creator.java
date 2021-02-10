@@ -56,7 +56,7 @@ public class Creator {
         try {
             int integerId = Integer.parseInt(id);
             return storages.deleteTask(integerId);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | SQLException e) {
             return false;
         }
     }
