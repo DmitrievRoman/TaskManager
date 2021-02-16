@@ -113,7 +113,6 @@ public class Storages {
     public void displayAllUsersInProjectById(int id) {
         if(projects.containsKey(id)) {
             Project project = projects.get(id);
-            Set<User> uniqueUsersInProject = new HashSet<>();
             project.displayUsersList();
         } else {
             System.out.println("Прроекта с таким id не существует");

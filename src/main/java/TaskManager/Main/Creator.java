@@ -23,10 +23,12 @@ public class Creator {
             return false;
         }
     }
-    public void createProject(String title, Storages storages) throws SQLException {
+    public boolean createProject(String title, Storages storages) throws SQLException {
         if(!title.equals("")) {
             new Project(title, storages);
+            return true;
         }
+        return false;
     }
     public boolean deleteProject(String id, Storages storages) {
         try{

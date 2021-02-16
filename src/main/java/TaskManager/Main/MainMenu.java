@@ -32,7 +32,11 @@ public class MainMenu {
 
                         break;
                     case"3":
-
+                        Database.showAllTables();
+                        System.out.println("Введите последние цифры проекта, который вы хотите загрузить");
+                        int count = Integer.parseInt(reader.readLine());
+                        Database.load(storages,count);
+                        MainLoop.mainLoop(storages);
                         break;
                 }
             } else {

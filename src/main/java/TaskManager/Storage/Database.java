@@ -130,7 +130,7 @@ public class Database {
         while (resultSetProjects.next()){
             int id = resultSetProjects.getInt("project_id");
             String title = resultSetProjects.getString("title");
-            new Project(id, title,storages);
+            new Project(id, title, storages);
         }
         ResultSet resultSetTasks = statement.executeQuery("SELECT * FROM tasks" + count);
         while (resultSetTasks.next()) {
@@ -142,6 +142,15 @@ public class Database {
             int executor_id = resultSetTasks.getInt("executor_id");
             String description = resultSetTasks.getString("description");
             new Task(id, title, type, priority, description, project_id, executor_id, storages);
+        }
+    }
+    public static void showAllTables() throws SQLException {
+        ResultSet resultSet = statement.executeQuery("show tables");
+        while (resultSet.next()){
+            //System.out.println(resultSet.getString(1));
+            if (resultSet.getString(1).contains("projects")){
+                System.out.println(resultSet.getString(1));
+            }
         }
     }
 }

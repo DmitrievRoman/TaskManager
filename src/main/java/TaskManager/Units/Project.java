@@ -5,12 +5,14 @@ import TaskManager.Storage.Storages;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Project extends Unit {
     private static int count;
     private final String title;
     private final Integer id;
-    private final ArrayList<User> users = new ArrayList<>();
+    private final Set<User> users = new HashSet<>();
     private final ArrayList<Task> tasks = new ArrayList<>();
 
     public Project(String title, Storages storages) throws SQLException {
@@ -73,7 +75,7 @@ public class Project extends Unit {
     public Integer getId() {
         return id;
     }
-    public ArrayList<User> getUsersList() {
+    public Set<User> getUsersList() {
         return users;
     }
     public ArrayList<Task> getTasksList() {

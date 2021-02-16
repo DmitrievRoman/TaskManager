@@ -50,6 +50,15 @@ public class User extends Unit {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "Пользователь{" +
+                "Имя: '" + name + '\'' +
+                ", id=" + id +
+                ", tasks=" + tasks +
+                '}';
+    }
+
     public ArrayList<Task> getTasks() {
         return tasks;
     }

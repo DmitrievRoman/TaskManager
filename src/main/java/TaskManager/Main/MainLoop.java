@@ -1,6 +1,7 @@
 package TaskManager.Main;
 
 import TaskManager.Menu.Menu;
+import TaskManager.Storage.Database;
 import TaskManager.Storage.Storages;
 
 import java.io.BufferedReader;
@@ -13,6 +14,7 @@ public class MainLoop {
         Creator creator = new Creator();
         Menu.getMenu();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println(Database.getLastId());
         while (true) {
             String userInput = reader.readLine();
             if (!userInput.isEmpty()) {
@@ -39,7 +41,11 @@ public class MainLoop {
                     case "3"://Создать проект
                         System.out.println("Введите название проекта");
                         String projectTitle = reader.readLine();
-                        creator.createProject(projectTitle, storages);
+                        if(creator.createProject(projectTitle, storages)){
+                            System.out.println("Проект создан успешно");
+                        } else {
+                            System.out.println("Проект не создан");
+                        }
                         break;
                     case "4"://Удалить проект
                         storages.getAllProjects();
